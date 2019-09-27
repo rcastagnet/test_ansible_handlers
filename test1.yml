@@ -1,0 +1,13 @@
+---
+- name: 'test1 (OK: 2.7 | KO: 2.8/2.9/devel)'
+  hosts: localhost
+  roles:
+    - role: simple
+    - role: simple
+      test: ouais
+      when: false
+
+- name: rm test
+  hosts: localhost
+  tasks:
+    - file: path=test state=absent

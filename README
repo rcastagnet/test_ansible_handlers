@@ -1,0 +1,73 @@
+# test multiple handlers in different roles on a single hostgroup
+
+## Prerequisite
+
+Install virtualbox and virtualenv
+
+## tests
+
+test1: same role, one variable unused and a false condition
+test2: same role and a false condition
+
+OK when '"msg": "RESTART"' displayed.
+
+
+### test with Ansible 2.7
+
+Procedure :
+```
+virtualenv ansible2.7
+source ansible2.7/bin/activate
+pip install ansible==2.7.2 molecule python-vagrant
+ansible-playbook test1.yml
+ansible-playbook test2.yml
+deactivate
+```
+
+Result test1 : OK
+Result test2 : OK
+
+### test with Ansible 2.8
+
+Procedure :
+```
+virtualenv ansible2.8
+source ansible2.8/bin/activate
+pip install ansible==2.8.5 molecule python-vagrant
+ansible-playbook test1.yml
+ansible-playbook test2.yml
+deactivate
+```
+
+Result test1 : KO
+Result test2 : OK
+
+### test with Ansible 2.9
+
+Procedure :
+```
+virtualenv ansible2.9
+source ansible2.9/bin/activate
+pip install git+https://github.com/ansible/ansible.git@stable-2.9 molecule python-vagrant
+ansible-playbook test1.yml
+ansible-playbook test2.yml
+deactivate
+```
+
+Result test1 : KO
+Result test2 : KO
+
+### test with Ansible devel
+
+Procedure :
+```
+virtualenv ansible_devel
+source ansible_devel/bin/activate
+pip install git+https://github.com/ansible/ansible.git@devel molecule python-vagrant
+ansible-playbook test1.yml
+ansible-playbook test2.yml
+deactivate
+```
+
+Result test1 : KO
+Result test2 : KO

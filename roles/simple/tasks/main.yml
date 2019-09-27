@@ -1,0 +1,6 @@
+---
+- name: add file for test
+  copy:
+    dest: test
+    content: test
+  notify: restart test
